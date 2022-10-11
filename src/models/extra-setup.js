@@ -5,7 +5,7 @@ exports.applyExtraSetup = (sequelize) => {
         TrxBorrow,
     } = sequelize.models;
 
-    Book.belongsTo(TrxBorrow, { as: "trx_borrow", foreignKey: "_id" });
-    Member.belongsTo(TrxBorrow, { as: "trx_borrow", foreignKey: "_id" });
+    Book.belongsToMany(Member, {through: TrxBorrow});
+    Member.belongsToMany(Book, {through: TrxBorrow});
 
 };

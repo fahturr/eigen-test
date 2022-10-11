@@ -1,0 +1,32 @@
+version: '3.9'
+
+networks:
+  db:
+    name: 'db'
+
+services:
+  database-postgres:
+    container_name: database-postgres
+    image: postgres:14.5
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    networks:
+      - db
+
+  pgadmin:
+    container_name: pg-admin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    depends_on:
+      - database-postgres
+    ports:
+      - "5050:80"
+    networks:
+      - db

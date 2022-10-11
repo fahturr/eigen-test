@@ -10,6 +10,9 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false
         },
+        penalized: {
+            type: DataTypes.DATE
+        }
     }, {
         tableName: "member",
         underscored: true

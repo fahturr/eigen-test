@@ -2,13 +2,10 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
     sequelize.define("TrxBorrow", {
-        _id: {
+        id: {
             type: DataTypes.INTEGER,
+            autoIncrement: true,
             primaryKey: true
-        },
-        borrow_date: {
-            type: DataTypes.STRING,
-            allowNull: false
         }
     }, {
         tableName: "trx_borrow",
